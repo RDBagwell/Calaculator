@@ -52,7 +52,6 @@ body {
   background: #f1f1f1;
 }
 
-
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
@@ -69,11 +68,50 @@ body {
   padding: 10px;
 }
 
+button{
+  cursor: pointer;
+  min-height: 50px;
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  border-radius: 5px;
+  background: rgb(199, 199, 199);
+}
+
+button:hover{
+  filter: brightness(110%);
+}
+
+button:active{
+  filter: brightness(90%);
+  transform: translateY(1px);
+}
+
+button:focus{
+  outline: none;
+}
+
+.operator{
+  background: grey;
+  color: white;
+  font-size: 30px;
+}
+
+.clear{
+  background: rgb(150, 8, 8);
+  color: white;
+}
+
+
 .eqal-sign{
   grid-column: -2;
   grid-row: 2 / 6;
+  background: green;
+  color: white;
 }
 
-.calaculator-buttons button{
-  cursor: pointer;
-}
+@media screen and (max-width: 600px){
+  .calaculator{
+    width: 95%;
+  }
+};

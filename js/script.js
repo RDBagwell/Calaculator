@@ -2,6 +2,14 @@ const calculatorDisplay = document.querySelector('h1');
 const inputBtns = document.querySelectorAll('button');
 const clearBtn = document.getElementById('clear-btn');
 
+const calculate = {
+    '/' : (firstNumber, secondNumber) => firstNumber / secondNumber,
+    '*' : (firstNumber, secondNumber) => firstNumber * secondNumber,
+    '+' : (firstNumber, secondNumber) => firstNumber + secondNumber,
+    '-' : (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '=' : (secondNumber) => secondNumber
+}
+
 let firstValue = 0;
 let operatorValue = '';
 let awaitingValue = false;
@@ -36,14 +44,19 @@ function clearDisplay() {
 
 function useOperator(operator) {
     const currentValue = Number(calculatorDisplay.textContent);
+    if(operatorValue && awaitingValue) {
+        operatorValue = operator;
+        return;
+    };
     if(!firstValue){
         firstValue = currentValue;
     } else{
-        console.log('cv: ', currentValue);
+        const calculation  = calculate[operatorValue](firstValue, currentValue);
+        firstValue = calculation;
+        calculatorDisplay.textContent = calculation;
     }
     awaitingValue = true;
     operatorValue = operator;
-    console.log('fv: ', firstValue, ' ov: ', operatorValue)
 }
 
 inputBtns.forEach((inputBtn)=>{
